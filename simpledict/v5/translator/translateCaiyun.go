@@ -48,7 +48,7 @@ type DictResponseCaiyun struct {
 	} `json:"dictionary"`
 }
 
-func queryCaiyun(word string) {
+func QueryCaiyun(word string) {
 	client := &http.Client{}
 	request := DictRequestCaiyun{TransType: "en2zh", Source: word}
 	buf, err := json.Marshal(request)
@@ -95,7 +95,8 @@ func queryCaiyun(word string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(word, "UK:", dictResponse.Dictionary.Prons.En, "US:", dictResponse.Dictionary.Prons.EnUs)
+	fmt.Println("====================Result of \"" + word + "\" in Caiyun====================")
+	fmt.Println("UK:", dictResponse.Dictionary.Prons.En, "US:", dictResponse.Dictionary.Prons.EnUs)
 	for _, item := range dictResponse.Dictionary.Explanations {
 		fmt.Println(item)
 	}
